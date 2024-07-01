@@ -5,6 +5,15 @@ const cors = require("cors");
 
 const app = express();
 
+
+app.get("/api/niloy", (req,res)=>{
+  res.send("hi from niloy :)")
+})
+
+
+
+
+
 //connect to mongodb
 const { connectToMongoose } = require("./config/db");
 
@@ -21,6 +30,7 @@ const {
   apiLimiter,
 } = require("./middlewares/rateLimitMiddleware/rateLimitMiddleware");
 app.use("/api", apiLimiter);
+
 
 //users Router
 const usersRoute = require("./routes/usersRoutes");
@@ -48,6 +58,9 @@ if (process.env.NODE_ENV === "production") {
     )
   );
 }
+
+
+
 
 connectToMongoose()
   .then(() => {
